@@ -1,23 +1,46 @@
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import { useEffect, useState } from "react";
+import axios from "axios";
+import "./style.css";
 
 function App() {
+  const [data, setData] = useState([]);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const { data: response } = await axios.get(
+          "https://fakestoreapi.com/products?limit=n"
+        );
+        setData(response);
+      } catch (error) {
+        console.error(error.message);
+      }
+    };
+    fetchData();
+  }, []);
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <div className="heading">
+        <center>
+          <h1>Store</h1>
+        </center>
+      </div>
+      <div>
+        {data.map((item) => (
+          <div>
+            <div className="item">
+              <img className="image" src={item.image} alt={item.id} />
+              <div className="item_detail">
+                <div className="inner">Title: {item.title}</div>
+                <div className="inner">Price: ${item.price}</div>
+                <div className="inner">Description: {item.description}</div>
+                <div className="inner">Category: {item.category}</div>
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
     </div>
   );
 }

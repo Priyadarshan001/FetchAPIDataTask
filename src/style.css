@@ -1,0 +1,22 @@
+.image{
+    width: 200px;
+    height: 200px;
+}
+.item{
+    display: flex;
+    flex-direction: row;
+    padding: 10px;
+    border-bottom: 1px solid black;
+}
+.item_detail{
+    display: flex;
+    flex-direction: column;
+    margin: auto;
+    width: 60%;
+}
+.inner{
+    padding: 5px;
+}
+.heading{
+    background-color: rgb(213, 134, 134);
+}
