@@ -20,3 +20,18 @@
 .heading{
     background-color: rgb(213, 134, 134);
 }
+.cart-img{
+    src: url('./components/cart.jpg');
+    alt: "";
+    width: 30%;
+    height: 30%;
+    margin-left: 95%;
+}
+.addcartbutton{
+    background-color: rgb(104, 55, 55);
+    color: azure;
+    cursor: pointer;
+    font-weight: bolder;
+    font-size: larger;
+    padding: 5px;
+}
