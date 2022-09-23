@@ -6,7 +6,9 @@ import "./style.css";
 function App() {
   const [data, setData] = useState([]);
   const [cartItems, setCartItems] = useState([]);
-  const [cartItemsId, setCartItemsId] = useState([]);
+  const [cartItemsList, setCartItemsList] = useState([]);
+  const [itemQuantity, setItemQuantity] = useState(0);
+  const [newArray, setNewArray] = useState([]);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -22,6 +24,10 @@ function App() {
     fetchData();
   }, []);
 
+  useEffect(() => {
+    console.log(newArray);
+  }, [newArray]);
+
   // const onAdd = (item) => {
   //   // event.preventDefault();
   //   // let item_id_added_to_cart = event.target.getAttribute("cart-item-id");
@@ -35,34 +41,34 @@ function App() {
   //   console.log(item);
   // };
 
-  const onAdd = (itemId) => {
-    console.log(itemId);
-    setCartItemsId([...cartItemsId, itemId]);
+  // var a  = [];  //state variable
 
-    //   const exist = cartItems.find((x) => x.id === item.id);
-    //   if (exist) {
-    //     setCartItems(
-    //       cartItems.map((x) =>
-    //         x.id === item.id ? { ...exist, qty: exist.qty + 1 } : x
-    //       )
-    //     );
-    //   } else {
-    //     setCartItems([...cartItems, { ...item, qty: 1 }]);
-    //   }
-    // };
-    // const onRemove = (item) => {
-    //   const exist = cartItems.find((x) => x.id === item.id);
-    //   if (exist.qty === 1) {
-    //     setCartItems(cartItems.filter((x) => x.id !== item.id));
-    //   } else {
-    //     setCartItems(
-    //       cartItems.map((x) =>
-    //         x.id === item.id ? { ...exist, qty: exist.qty - 1 } : x
-    //       )
-    //     );
-    //   }
+  // a.item.id // incculdes
+  // a.push
+  // a[indexof].qua = +1
+
+  const onAdd = (item) => {
+    //data.itemQuantity = 0;
+    // var newArray = [];
+
+    // console.log("item is :", item);
+    // let newItem = data[item.id - 1];
+
+    // console.log(newItem);
+    // setCartItems([...cartItems, newItem]);
+
+    const exist = newArray.includes(item.id);
+    if (!exist) {
+      setNewArray((prevState) => {
+        return [...prevState, item];
+      });
+    }
   };
-  console.log("CartItemsID: ", [...cartItemsId]);
+
+  function removeDuplicates(cartItems) {
+    return [...new Set(cartItems)];
+  }
+  console.log("after removing", removeDuplicates(cartItems));
   return (
     <div>
       <div className="heading">
@@ -75,7 +81,7 @@ function App() {
       </div>
       <div>
         {data.map((item) => (
-          <div>
+          <div key={item.id}>
             <div className="item">
               <img className="image" src={item.image} alt={item.id} />
               <div className="item_detail">
@@ -87,7 +93,7 @@ function App() {
               <div>
                 <span
                   type="button"
-                  onClick={() => onAdd(item.id)}
+                  onClick={() => onAdd(item)}
                   className="addcartbutton"
                   cart-item-id={item.id}
                 >
@@ -101,10 +107,10 @@ function App() {
       <div>
         <h3>Order Summary:</h3>
         <h5>
-          {cartItems.map((item) => (
+          {removeDuplicates(cartItems).map((value) => (
             <>
-              <div className="inner">Title: {item.title}</div>
-              <div className="inner">Price: {item.price}</div>
+              <div className="inner">Title: {value.title}</div>
+              <div className="inner">Price: {value.price}</div>
             </>
           ))}
         </h5>
