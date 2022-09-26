@@ -5,14 +5,16 @@ import "./style.css";
 
 function App() {
   const [data, setData] = useState([]);
-  const [cartItems, setCartItems] = useState([]);
-  const [cartItemsList, setCartItemsList] = useState([]);
-  const [itemQuantity, setItemQuantity] = useState(0);
-  const [newArray, setNewArray] = useState([]);
+  const [cartMap, setCartMap] = useState(new Map());
+  let totalQuantity =0;
+  let totalPrice =0;
+
 
   useEffect(() => {
+    console.log("inside use effect...")
     const fetchData = async () => {
       try {
+        console.log("calling fetch API...")
         const { data: response } = await axios.get(
           "https://fakestoreapi.com/products?limit=n"
         );
@@ -24,51 +26,33 @@ function App() {
     fetchData();
   }, []);
 
-  useEffect(() => {
-    console.log(newArray);
-  }, [newArray]);
-
-  // const onAdd = (item) => {
-  //   // event.preventDefault();
-  //   // let item_id_added_to_cart = event.target.getAttribute("cart-item-id");
-  //   // console.log(
-  //   //   "printing the item-id which was added to cart",
-  //   //   item_id_added_to_cart
-  //   // );
-
-  //   // let new_item_in_cart = data[item_id_added_to_cart - 1];
-  //   // setCartItems([...cartItems, new_item_in_cart]);
-  //   console.log(item);
-  // };
-
-  // var a  = [];  //state variable
-
-  // a.item.id // incculdes
-  // a.push
-  // a[indexof].qua = +1
-
   const onAdd = (item) => {
-    //data.itemQuantity = 0;
-    // var newArray = [];
 
-    // console.log("item is :", item);
-    // let newItem = data[item.id - 1];
+    console.log(
+      "Inside onAdd. Printing the item-id which was added to cart",
+      item.id
+    );
 
-    // console.log(newItem);
-    // setCartItems([...cartItems, newItem]);
+    let cartObject = {}
+    cartObject.quantity = 1
+    cartObject.id = item.id
+    cartObject.price = item.price
+    cartObject.title = item.title
+    cartObject.image = item.image
 
-    const exist = newArray.includes(item.id);
-    if (!exist) {
-      setNewArray((prevState) => {
-        return [...prevState, item];
-      });
+
+    if(cartMap.has(item.id)){
+      let existingObj = cartMap.get(item.id);
+      cartObject.quantity = existingObj.quantity + 1
+      cartObject.price = existingObj.price + item.price
+
     }
+    
+    setCartMap(new Map(cartMap.set(item.id, cartObject)))
+
   };
 
-  function removeDuplicates(cartItems) {
-    return [...new Set(cartItems)];
-  }
-  console.log("after removing", removeDuplicates(cartItems));
+  console.log("cart values, rendering components...");
   return (
     <div>
       <div className="heading">
@@ -106,14 +90,37 @@ function App() {
       </div>
       <div>
         <h3>Order Summary:</h3>
-        <h5>
-          {removeDuplicates(cartItems).map((value) => (
-            <>
-              <div className="inner">Title: {value.title}</div>
-              <div className="inner">Price: {value.price}</div>
-            </>
-          ))}
-        </h5>
+
+
+
+    <div >
+      <table>
+        <tr>
+          <th>Item Name</th>
+          <th>Quantity</th>
+          <th>Price</th>
+        </tr>
+        {[...cartMap.values()].map(val => {
+         totalQuantity = totalQuantity + val.quantity
+         totalPrice = totalPrice + val.price
+            return (
+              <tr key={val.id}>
+              <td>{val.title}</td>
+              <td>{val.quantity}</td>
+              <td>{Number(val.price).toFixed(2)}</td>
+            </tr>
+            )
+          })
+        }
+         <tr>
+          <td>Total</td>
+          <td>{totalQuantity}</td>
+          <td>{Number(totalPrice).toFixed(2)}</td>
+         </tr>
+      </table>
+    </div>
+
+
       </div>
     </div>
   );
