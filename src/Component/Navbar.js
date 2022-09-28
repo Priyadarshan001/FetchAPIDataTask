@@ -1,24 +1,29 @@
 import React from "react";
-import { connect } from "react-redux";
+import "../style.css";
 import { Link } from "react-router-dom";
+import HomeIcon from "@mui/icons-material/Home";
+import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 
-const Navbar = (props) => {
+function Navbar() {
   return (
     <div>
       <div>
         <nav>
-          <ul>
-            <li>
-              <Link to="/">Products</Link>
-            </li>
-            <li>
-              <Link to="/carts">Carts : {props.numberCart}</Link>
-            </li>
-          </ul>
+          <div className="muiIconHome">
+            <Link to="/">
+              <HomeIcon fontSize="large" />
+            </Link>
+          </div>
+
+          <div className="muiIconCart">
+            <Link to="/carts">
+              <ShoppingCartIcon fontSize="large" />{" "}
+            </Link>
+          </div>
         </nav>
       </div>
     </div>
   );
-};
+}
 
 export default Navbar;

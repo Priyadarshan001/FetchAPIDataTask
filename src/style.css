@@ -19,14 +19,11 @@
 }
 .heading{
     background-color: rgb(213, 134, 134);
+    color: aliceblue;
+    height: 50px;
+    font-family: cursive;
 }
-.cart-img{
-    /* src: url('./components/cart.jpg'); */
-    alt: "";
-    width: 30%;
-    height: 30%;
-    margin-left: 95%;
-}
+
 .addcartbutton{
     background-color: rgb(104, 55, 55);
     color: azure;
@@ -65,6 +62,19 @@
   td {
     text-align: center;
   }
-  /* .total{
+ .tableimage{
+    width: 50px;
+    height: 50px;
+ }
+ .total{
     border-top: 1px solid black;
-  } */
+ }
+ .muiIconHome{
+    position: absolute;
+    padding: 8px;
+ }
+ .muiIconCart{
+    position: absolute;
+    margin-left: 95%;
+    padding: 8px;
+ }

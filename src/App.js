@@ -6,15 +6,14 @@ import "./style.css";
 function App() {
   const [data, setData] = useState([]);
   const [cartMap, setCartMap] = useState(new Map());
-  let totalQuantity =0;
-  let totalPrice =0;
-
+  let totalQuantity = 0;
+  let totalPrice = 0;
 
   useEffect(() => {
-    console.log("inside use effect...")
+    console.log("inside use effect...");
     const fetchData = async () => {
       try {
-        console.log("calling fetch API...")
+        console.log("calling fetch API...");
         const { data: response } = await axios.get(
           "https://fakestoreapi.com/products?limit=n"
         );
@@ -27,29 +26,25 @@ function App() {
   }, []);
 
   const onAdd = (item) => {
-
     console.log(
       "Inside onAdd. Printing the item-id which was added to cart",
       item.id
     );
 
-    let cartObject = {}
-    cartObject.quantity = 1
-    cartObject.id = item.id
-    cartObject.price = item.price
-    cartObject.title = item.title
-    cartObject.image = item.image
+    let cartObject = {};
+    cartObject.quantity = 1;
+    cartObject.id = item.id;
+    cartObject.price = item.price;
+    cartObject.title = item.title;
+    cartObject.image = item.image;
 
-
-    if(cartMap.has(item.id)){
+    if (cartMap.has(item.id)) {
       let existingObj = cartMap.get(item.id);
-      cartObject.quantity = existingObj.quantity + 1
-      cartObject.price = existingObj.price + item.price
-
+      cartObject.quantity = existingObj.quantity + 1;
+      cartObject.price = existingObj.price + item.price;
     }
-    
-    setCartMap(new Map(cartMap.set(item.id, cartObject)))
 
+    setCartMap(new Map(cartMap.set(item.id, cartObject)));
   };
 
   console.log("cart values, rendering components...");
@@ -91,36 +86,31 @@ function App() {
       <div>
         <h3>Order Summary:</h3>
 
-
-
-    <div >
-      <table>
-        <tr>
-          <th>Item Name</th>
-          <th>Quantity</th>
-          <th>Price</th>
-        </tr>
-        {[...cartMap.values()].map(val => {
-         totalQuantity = totalQuantity + val.quantity
-         totalPrice = totalPrice + val.price
-            return (
-              <tr key={val.id}>
-              <td>{val.title}</td>
-              <td>{val.quantity}</td>
-              <td>{Number(val.price).toFixed(2)}</td>
+        <div>
+          <table>
+            <tr>
+              <th>Item Name</th>
+              <th>Quantity</th>
+              <th>Price</th>
             </tr>
-            )
-          })
-        }
-         <tr>
-          <td>Total</td>
-          <td>{totalQuantity}</td>
-          <td>{Number(totalPrice).toFixed(2)}</td>
-         </tr>
-      </table>
-    </div>
-
-
+            {[...cartMap.values()].map((val) => {
+              totalQuantity = totalQuantity + val.quantity;
+              totalPrice = totalPrice + val.price;
+              return (
+                <tr key={val.id}>
+                  <td>{val.title}</td>
+                  <td>{val.quantity}</td>
+                  <td>{Number(val.price).toFixed(2)}</td>
+                </tr>
+              );
+            })}
+            <tr>
+              <td>Total</td>
+              <td>{totalQuantity}</td>
+              <td>{Number(totalPrice).toFixed(2)}</td>
+            </tr>
+          </table>
+        </div>
       </div>
     </div>
   );
