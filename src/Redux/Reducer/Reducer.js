@@ -1,20 +1,16 @@
+import { ADD_CART } from "../Action/Action"
 
 
 
 const initialstate = {
     cartMap : new Map(),
-    data: [],
 }
 
 export default function handleProduct(state = initialstate, action) {
+    console.log("action type: ", action.type, state.cartMap)
     switch(action.type){
-        case FETCH_DATA:
-
-            return{
-                ...state,
-                data:action.payload
-            }
         case ADD_CART:
+            console.log("inside reducer 1st line", action.payload)
             let item = action.payload
             let cartObject = {}
             cartObject.quantity = 1
@@ -23,15 +19,20 @@ export default function handleProduct(state = initialstate, action) {
             cartObject.title = item.title
             cartObject.image = item.image
         
-        
+            console.log("inside reducer", state)
             if(state.cartMap.has(item.id)){
-              let existingObj = cartMap.get(item.id);
+              let existingObj = state.cartMap.get(item.id);
               cartObject.quantity = existingObj.quantity + 1
               cartObject.price = existingObj.price + item.price
         
             }
 
             state.cartMap.set(item.id, cartObject)
-
+            return state
+            
+        default: 
+            console.log("inside DEFAULT", state)
+            return state
         }
+        
     }
