@@ -1,7 +1,29 @@
 import React from 'react'
+import { useEffect, useState } from "react";
+import axios from "axios";
+import "../style.css";
+import {  useDispatch } from 'react-redux';
+import { addCart } from '../Redux/Action/Action';
 
 function Home() {
+ const [data, setData] = useState([]);
+ const dispatch = useDispatch();
 
+ useEffect(() => {
+  console.log("inside use effect...")
+  const fetchData = async () => {
+    try {
+      console.log("calling fetch API...")
+      const { data: response } = await axios.get(
+        "https://fakestoreapi.com/products?limit=n"
+      );
+      setData(response);
+    } catch (error) {
+      console.error(error.message);
+    }
+  };
+  fetchData();
+}, []);
 
 
 
@@ -31,7 +53,7 @@ function Home() {
                       <div>
                         <span
                           type="button"
-                          onClick={() => onAdd(item)}
+                          onClick={()=> dispatch(addCart(item)) }
                           className="addcartbutton"
                           cart-item-id={item.id}
                         >
