@@ -36,13 +36,9 @@ function Cart() {
                   <img className="tableimage" src={val.image} alt="pic here" />
                 </td>
                 <td>{val.title}</td>
-                <button onClick={() => dispatch(decreaseQuantity(val))}>
-                  -
-                </button>
+                <button onClick={() => dispatch(decreaseQuantity(val))}>-</button>
                 <td>{val.quantity}</td>
-                <button onClick={() => dispatch(increaseQuantity(val))}>
-                  +
-                </button>
+                <button onClick={() => dispatch(increaseQuantity(val))}>+</button>
                 <td>{Number(val.price).toFixed(2)}</td>
               </tr>
             );

@@ -17,6 +17,7 @@ export default function handleProduct(state = initialstate, action) {
       cartObject.quantity = 1;
       cartObject.id = item.id;
       cartObject.price = item.price;
+      cartObject.perUnitPrice = item.price;
       cartObject.title = item.title;
       cartObject.image = item.image;
 
@@ -38,25 +39,25 @@ export default function handleProduct(state = initialstate, action) {
       console.log("item2", item2.id);
       let existingObj = state.cartMap.get(item2.id);
 
-      if (existingObj.quantity > 0) {
-        existingObj.quantity = existingObj.quantity + 1;
-        existingObj.price = existingObj.quantity * item2.price;
-      }
-
+      existingObj.quantity = existingObj.quantity + 1;
+      existingObj.price = existingObj.quantity * item2.perUnitPrice;
+      
       state.cartMap.set(item2.id, existingObj);
       return { ...state };
 
     case DECREASE_QUANTITY:
       let item3 = action.payload;
       console.log("item3", item3);
+      
       let existingObj2 = state.cartMap.get(item3.id);
 
-      if (existingObj2.quantity > 0) {
-        existingObj2.quantity = existingObj2.quantity - 1;
-        existingObj2.price = existingObj2.quantity * item3.price;
+      existingObj2.quantity = existingObj2.quantity - 1;
+      existingObj2.price = existingObj2.quantity * item3.perUnitPrice;
+      if (existingObj2.quantity === 0){
+        state.cartMap.delete(item3.id)
+      }else{
+        state.cartMap.set(item3.id, existingObj2);
       }
-      state.cartMap.set(item3.id, existingObj2);
-
       return { ...state };
   }
 }
