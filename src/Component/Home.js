@@ -6,7 +6,7 @@ import { useDispatch } from "react-redux";
 import { addCart } from "../Redux/Action/Action";
 import AddShoppingCartIcon from "@mui/icons-material/AddShoppingCart";
 
-function Home() {
+function Home(props) {
   const [data, setData] = useState([]);
   const dispatch = useDispatch();
 
@@ -55,6 +55,7 @@ function Home() {
           </div>
         ))}
       </div>
+      <div>Data from: {props.name}</div>
     </div>
   );
 }

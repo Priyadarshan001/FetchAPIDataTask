@@ -1,4 +1,4 @@
-import { ADD_CART } from "../Action/Action";
+import { ADD_CART, DELETE_ITEM } from "../Action/Action";
 import { DECREASE_QUANTITY } from "./../Action/Action";
 import { INCREASE_QUANTITY } from "../Action/Action";
 
@@ -41,23 +41,34 @@ export default function handleProduct(state = initialstate, action) {
 
       existingObj.quantity = existingObj.quantity + 1;
       existingObj.price = existingObj.quantity * item2.perUnitPrice;
-      
+
       state.cartMap.set(item2.id, existingObj);
       return { ...state };
 
     case DECREASE_QUANTITY:
       let item3 = action.payload;
       console.log("item3", item3);
-      
+
       let existingObj2 = state.cartMap.get(item3.id);
 
       existingObj2.quantity = existingObj2.quantity - 1;
       existingObj2.price = existingObj2.quantity * item3.perUnitPrice;
-      if (existingObj2.quantity === 0){
-        state.cartMap.delete(item3.id)
-      }else{
+      if (existingObj2.quantity === 0) {
+        state.cartMap.delete(item3.id);
+      } else {
         state.cartMap.set(item3.id, existingObj2);
       }
       return { ...state };
+
+    case DELETE_ITEM:
+      let item4 = action.payload;
+      state.cartMap.delete(item4.id);
+      return { ...state };
+
+    // case SHOW_TABLE:
+    //   let shwoTable = true;
+    //   let item5 = action.payload;
+    //   state.cartMap.delete(item5.id);
+    //   return { ...state };
   }
 }

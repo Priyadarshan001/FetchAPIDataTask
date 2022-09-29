@@ -78,3 +78,11 @@
     margin-left: 95%;
     padding: 8px;
  }
+ .button{
+    background-color: rgb(33, 114, 253);
+    font-size: larger;
+    color: hsl(67, 100%, 74%);
+    margin-top: 50%;
+    cursor: pointer;
+    border-radius: 5px;
+ }
