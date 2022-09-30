@@ -1,34 +1,32 @@
-import React from "react";
-import { useState } from "react";
+import React from 'react';
 
 function Test(props) {
-  const [empData, setEmpData] = useState(null);
+  const [empData, setEmpData] = React.useState();
 
+  const setEmployeeData=(value)=>{
+    console.log("Value inside getValue():", value)
+    
+      setEmpData(value) 
+  }
   return (
     <div>
       {props.myArray.map((value, index) => {
-        // value.employees.map((subValue) => {});
         return (
           <div key={index}>
-            <button
-              onClick={() => {
-                setEmpData(value);
-              }}
-            >
-              {value.dept}
-            </button>
+            <button onClick={()=>setEmployeeData(value)}>{value.dept}</button>
           </div>
         );
       })}
-      <div>
-        {empData?.employees.map((empData) => (
-          <div>
-            <p>{empData?.Name}</p>
-            <p>{empData?.Age}</p>
-            <p>{empData?.Salary}</p>
+      
+      {empData && 
+      <div>{empData.employees.map((data) => (
+          <div key={data.Id}>
+            <p>{data.Name}</p>
+            <p>{data.Age}</p>
+            <p>{data.Salary}</p>
           </div>
         ))}
-      </div>
+      </div>}
     </div>
   );
 }
