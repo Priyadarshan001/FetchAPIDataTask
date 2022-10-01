@@ -1,28 +1,37 @@
-import React,{useState} from 'react';
-import '../style.css'
+import React, { useState } from "react";
+import "../style.css";
 
 function DepartmentComponent(props) {
-  const [empData, setEmpData] = useState();
+  const [deptId, setDeptId] = useState();
 
+  console.log("department id : ", deptId);
   return (
-    <div className='arraydata'>
+    <div className="arraydata">
       {props.myArray.map((value, index) => {
         return (
           <div key={index}>
-            <button onClick={()=>setEmpData(value)}>{value.dept}</button>
+            <button onClick={() => setDeptId(value.id)}>{value.dept}</button>
           </div>
         );
       })}
-      
-      {empData && 
-      <div>{empData.employees.map((data) => (
-          <div key={data.Id}>
-            <p>{data.Name}</p>
-            <p>{data.Age}</p>
-            <p>{data.Salary}</p>
-          </div>
-        ))}
-      </div>}
+
+      {deptId && (
+        <div>
+          {props.myArray
+            .filter((dept) => dept.id == deptId)
+            .map((dept_obj) => {
+              return dept_obj.employees.map((data) => {
+                return (
+                  <div key={data.Id}>
+                    <p>{data.Name}</p>
+                    <p>{data.Age}</p>
+                    <p>{data.Salary}</p>
+                  </div>
+                );
+              });
+            })}
+        </div>
+      )}
     </div>
   );
 }

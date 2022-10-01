@@ -5,6 +5,7 @@ function Deptform(props) {
   const [newDept, setNewDept] = useState("");
 
   const addNewDepartment = () => {
+    console.log("New dept", setNewDept);
     setNewDept("");
     props.addNewDept({ dept: newDept });
   };
