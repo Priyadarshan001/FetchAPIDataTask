@@ -5,14 +5,12 @@ function Deptform(props) {
   const [newDept, setNewDept] = useState("");
 
   const addNewDepartment = () => {
-    console.log("array value ", props);
-    let newArray = props.myArray;
-    newArray.push({ dept: newDept });
-    console.log("Updated Array", newArray);
-    props.setArray(newArray);
+    setNewDept("");
+    props.addNewDept({ dept: newDept });
   };
+
   return (
-    <div className="deptFormInput">
+    <div className="arraydata">
       <input
         placeholder="Add new department"
         type="text"

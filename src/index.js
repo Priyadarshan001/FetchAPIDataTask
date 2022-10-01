@@ -4,15 +4,17 @@ import reportWebVitals from "./reportWebVitals";
 import { Provider } from "react-redux";
 import RouterApp from "./RouterApp";
 import store from "./Redux/Store/Store";
+import CollegeDepartment from "./College/CollegeDepartment";
 // import App from "./App";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
     {/* <App /> */}
-    <Provider store={store}>
+    {/* <Provider store={store}>
       <RouterApp />
-    </Provider>
+    </Provider> */}
+    <CollegeDepartment/>
   </React.StrictMode>
 );
 

@@ -7,42 +7,9 @@ import {
   deleteItem,
 } from "./../Redux/Action/Action";
 import RemoveShoppingCartIcon from "@mui/icons-material/RemoveShoppingCart";
-import Home from "./Home";
-import Test from "./test";
 
 function Cart() {
-  const [array, setArray] = React.useState(
-    [
-    {
-      dept: "COMPUTER SCIENCE",
-      employees: [
-        {
-          Id: 1,
-          Name: "ARJUN",
-          Age: 20,
-          Salary: 20000,
-        },
-        {
-          Id: 2,
-          Name: "RAHUL",
-          Age: 21,
-          Salary: 25000,
-        },
-      ],
-    },
-    {
-      dept: "MECHANICAL",
-      employees: [
-        {
-          Id: 1,
-          Name: "VIRAT",
-          Age: 28,
-          Salary: 100000,
-        },
-      ],
-    },
-  ]
-  );
+  
   
   let totalQuantity = 0;
   let totalPrice = 0;
@@ -52,10 +19,6 @@ function Cart() {
 
   return (
     <div>
-      <div>
-        <Test myArray={array} />
-      </div>
-
       <div className="heading">
         <center>
           <h1>Cart</h1>

@@ -1,19 +1,15 @@
-import React from 'react';
+import React,{useState} from 'react';
+import '../style.css'
 
-function Test(props) {
-  const [empData, setEmpData] = React.useState();
+function DepartmentComponent(props) {
+  const [empData, setEmpData] = useState();
 
-  const setEmployeeData=(value)=>{
-    console.log("Value inside getValue():", value)
-    
-      setEmpData(value) 
-  }
   return (
-    <div>
+    <div className='arraydata'>
       {props.myArray.map((value, index) => {
         return (
           <div key={index}>
-            <button onClick={()=>setEmployeeData(value)}>{value.dept}</button>
+            <button onClick={()=>setEmpData(value)}>{value.dept}</button>
           </div>
         );
       })}
@@ -31,4 +27,4 @@ function Test(props) {
   );
 }
 
-export default Test;
+export default DepartmentComponent;
