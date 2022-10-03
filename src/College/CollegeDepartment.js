@@ -1,12 +1,13 @@
 import React from "react";
+import "../style.css";
 import Deptform from "./deptform";
 import DepartmentComponent from "./department";
 
 function CollegeDepartment() {
+  const [show, setShow] = React.useState(false);
   const [empArray, setEmpArray] = React.useState([
     {
       dept: "COMPUTER SCIENCE",
-      id: "123",
       employees: [
         {
           Id: 1,
@@ -24,7 +25,6 @@ function CollegeDepartment() {
     },
     {
       dept: "MECHANICAL",
-      id: "234",
       employees: [
         {
           Id: 1,
@@ -37,17 +37,24 @@ function CollegeDepartment() {
   ]);
 
   const addNewDeptToArray = (dept) => {
-    console.log("department", dept);
     let empArrayCopy = empArray.slice();
-    console.log("emp array", empArrayCopy);
     empArrayCopy.push(dept);
-    console.log("emp array after", empArrayCopy);
     setEmpArray(empArrayCopy);
   };
+
+  const showInputBox = () => {
+    setShow(!show);
+  };
+
   return (
     <div>
       <DepartmentComponent myArray={empArray} />
-      <Deptform myArray={empArray} addNewDept={addNewDeptToArray} />
+      <button className="arraydata" onClick={showInputBox}>
+        Add
+      </button>
+      {show ? (
+        <Deptform myArray={empArray} addNewDept={addNewDeptToArray} />
+      ) : null}
     </div>
   );
 }

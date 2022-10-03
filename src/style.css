@@ -49,11 +49,11 @@
     align-items: center;
   }
     
-  table {
+  /* table {
     border: 2px solid forestgreen;
     width: 800px;
     height: 200px;
-  }
+  } */
     
   th {
     border-bottom: 1px solid black;
@@ -62,10 +62,17 @@
   td {
     text-align: center;
   }
- .tableimage{
+ /* .tableimage{
     width: 50px;
     height: 50px;
- }
+ } */
+
+ table {
+    border: 2px solid forestgreen;
+    width: 350px;
+    height: 100px;
+    margin-left: 50%;
+  }
  .total{
     border-top: 1px solid black;
  }

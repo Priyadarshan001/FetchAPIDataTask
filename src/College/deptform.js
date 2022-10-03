@@ -2,12 +2,23 @@ import React, { useState } from "react";
 import "../style.css";
 
 function Deptform(props) {
-  const [newDept, setNewDept] = useState("");
-
+  const [newDept, setNewDept] = useState([
+    {
+      dept: "",
+      employees: [
+        {
+          Id: null,
+          Name: "",
+          Age: null,
+          Salary: null,
+        },
+      ],
+    },
+  ]);
   const addNewDepartment = () => {
-    console.log("New dept", setNewDept);
     setNewDept("");
     props.addNewDept({ dept: newDept });
+    console.log("New dept 2", newDept);
   };
 
   return (
