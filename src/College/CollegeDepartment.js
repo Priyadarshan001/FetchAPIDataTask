@@ -1,7 +1,7 @@
 import React from "react";
 import "../style.css";
-import Deptform from "./deptform";
-import DepartmentComponent from "./department";
+import AddDepartmentForm from "./AddDepartmentForm";
+import DepartmentComponent from "./DepartmentComponent";
 
 function CollegeDepartment() {
   const [show, setShow] = React.useState(false);
@@ -42,18 +42,25 @@ function CollegeDepartment() {
     setEmpArray(empArrayCopy);
   };
 
+  const editDepartment = (dept, index) => {
+    let empArrayCopy = empArray.slice();
+    empArrayCopy[index]= dept;
+    setEmpArray(empArrayCopy);
+  };
+
+
   const showInputBox = () => {
     setShow(!show);
   };
 
   return (
     <div>
-      <DepartmentComponent myArray={empArray} />
+      <DepartmentComponent myArray={empArray} addNewDept={addNewDeptToArray} editDepartment={editDepartment}/>
       <button className="arraydata" onClick={showInputBox}>
         Add
       </button>
       {show ? (
-        <Deptform myArray={empArray} addNewDept={addNewDeptToArray} />
+        <AddDepartmentForm addNewDept={addNewDeptToArray} dept=""/>
       ) : null}
     </div>
   );

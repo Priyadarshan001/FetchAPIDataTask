@@ -1,13 +1,18 @@
 import React, { useState } from "react";
 import "../style.css";
+import EditDepartmentForm from "./EditDepartmentForm";
 
 function DepartmentComponent(props) {
-  const [deptId, setDeptId] = useState();
-  console.log("dept Id ", props.myArray.);
+  const [departmentClicked, setDeptClicked] = useState();
+  const [editedDept, setEditedDept] = React.useState();
+  const [indexOfEditedDept, setIndex] = React.useState(0);
+  console.log("dept Id ", props.myArray);
 
-  const editDepartment = () => {
-    let editItem = props.myArray.filter((item) => item.dept === deptId);
-    console.log("check :", check);
+  const editDepartment = (index) => {
+    let dep = props.myArray[index]
+    console.log("dept to edit",dep.dept)
+    setEditedDept(dep)
+    setIndex(index)
   };
 
   return (
@@ -15,14 +20,14 @@ function DepartmentComponent(props) {
       {props.myArray.map((value, index) => {
         return (
           <div key={index}>
-            <button onClick={() => setDeptId(value)}>{value.dept}</button>
-            <button onClick={editDepartment}>Edit</button>
+            <button onClick={() => setDeptClicked(value)}>{value.dept}</button>
+            <button onClick={()=> editDepartment(index)}>Edit</button>
             <button>Delete</button>
           </div>
         );
       })}
 
-      {deptId && (
+      {departmentClicked && (
         <div>
           <table>
             <tbody>
@@ -31,10 +36,7 @@ function DepartmentComponent(props) {
                 <th>Age</th>
                 <th>Salary</th>
               </tr>
-              {props.myArray
-                .filter((dept) => dept == deptId)
-                .map((dept_obj) => {
-                  return dept_obj.employees.map((data) => {
+              {departmentClicked.employees.map((data) => {
                     return (
                       <tr key={data.Id}>
                         <td>{data.Name}</td>
@@ -42,12 +44,16 @@ function DepartmentComponent(props) {
                         <td>{data.Salary}</td>
                       </tr>
                     );
-                  });
-                })}
+              })
+              }
+                
             </tbody>
           </table>
         </div>
       )}
+      {
+      editedDept && <EditDepartmentForm editedDept={editedDept} indexOfEditedDept={indexOfEditedDept} editDepartment={props.editDepartment}/>
+      }
     </div>
   );
 }
