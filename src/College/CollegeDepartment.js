@@ -2,6 +2,7 @@ import React from "react";
 import "../style.css";
 import AddDepartmentForm from "./AddDepartmentForm";
 import DepartmentComponent from "./DepartmentComponent";
+import Practice from "./practice";
 
 function CollegeDepartment() {
   const [show, setShow] = React.useState(false);
@@ -44,24 +45,34 @@ function CollegeDepartment() {
 
   const editDepartment = (dept, index) => {
     let empArrayCopy = empArray.slice();
-    empArrayCopy[index]= dept;
+    empArrayCopy[index] = dept;
+    console.log("index in adddept", empArrayCopy[index]);
     setEmpArray(empArrayCopy);
   };
-
 
   const showInputBox = () => {
     setShow(!show);
   };
 
   return (
-    <div>
-      <DepartmentComponent myArray={empArray} addNewDept={addNewDeptToArray} editDepartment={editDepartment}/>
+    <div className="deptcomp">
+      <div>
+        <DepartmentComponent
+          myArray={empArray}
+          addNewDept={addNewDeptToArray}
+          editDepartment={editDepartment}
+        />
+      </div>
       <button className="arraydata" onClick={showInputBox}>
         Add
       </button>
       {show ? (
-        <AddDepartmentForm addNewDept={addNewDeptToArray} dept=""/>
+        <AddDepartmentForm addNewDept={addNewDeptToArray} dept="" />
       ) : null}
+      <div>
+        {/* <Practice myarr={empArray} /> */}
+        {/* <button onClick={deleteDepartment}>Delete</button> */}
+      </div>
     </div>
   );
 }

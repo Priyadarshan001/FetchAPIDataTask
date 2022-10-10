@@ -69,9 +69,12 @@
 
  table {
     border: 2px solid forestgreen;
-    width: 350px;
-    height: 100px;
-    margin-left: 50%;
+    width: 27.5%;
+    margin-top: 2px;
+    margin-bottom: 2px;
+    /* height: 100px; */
+    /* margin-left: auto; */
+    /* margin-right: auto; */
   }
  .total{
     border-top: 1px solid black;
@@ -95,5 +98,18 @@
  }
 
  .arraydata{
-    margin-left: 45%;
+    margin-left: 5%;
+    margin-top: 4px;
+ }
+ .deptvaluebtn{
+   width: 157px;
+   margin: 2px;
+ }
+ .editform{
+  margin-top: 4px;
+ }
+ body{
+  background-color: rgb(182, 187, 209);
+ }
+ .deptcomp{
  }

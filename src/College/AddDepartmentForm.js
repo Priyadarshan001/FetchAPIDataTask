@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import "../style.css";
 
 function AddDepartmentForm(props) {
+  console.log("props inside adddept", props);
   const newDeptObj = {
     dept: props.dept,
     employees: [
@@ -18,16 +19,17 @@ function AddDepartmentForm(props) {
 
   const addNewDepartment = () => {
     props.addNewDept(newDept);
-    setNewDept(newDeptObj)
+    setNewDept(newDeptObj);
     console.log("New dept 2", newDept);
   };
 
   function changeDept(e) {
-    setNewDept((prev) => {return {...prev,dept: e.target.value}})
+    setNewDept((prev) => {
+      return { ...prev, dept: e.target.value };
+    });
   }
-  console.log("new Dept: ", newDept)
+  console.log("new Dept: ", newDept);
   return (
-
     <div className="arraydata">
       <input
         placeholder="Add new department"
