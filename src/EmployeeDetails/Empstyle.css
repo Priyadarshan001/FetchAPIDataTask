@@ -1,0 +1,66 @@
+.maindiv {
+  background-color: rgb(52, 125, 52);
+  height: 50px;
+}
+.h4 {
+  color: aliceblue;
+  font-weight: bolder;
+  padding: 10px;
+}
+
+.div2 {
+  background-color: rgb(226, 226, 140);
+  height: 550px;
+  width: 30%;
+}
+.div3 {
+  background-color: rgb(170, 252, 173);
+  width: 70%;
+  height: 550px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.inputfield {
+  display: flex;
+  flex-direction: column;
+  width: 30%;
+}
+.btn {
+  background-color: #603cee;
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  width: 100%;
+  cursor: pointer;
+}
+.btn2 {
+  background-color: #4caf50;
+  border: none;
+  color: white;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 20px;
+  margin: 4px 2px;
+  cursor: pointer;
+  border-radius: 2px;
+}
+input[type="text"] {
+  width: 100%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+.data {
+  border: 1px solid black;
+  padding: 5px;
+  margin-bottom: 5px;
+}

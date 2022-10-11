@@ -1,8 +1,9 @@
 import React, { useState } from "react";
-import "../style.css";
+import "./style2.css";
 
 function AddDepartmentForm(props) {
   console.log("props inside adddept", props);
+
   const newDeptObj = {
     dept: props.dept,
     employees: [

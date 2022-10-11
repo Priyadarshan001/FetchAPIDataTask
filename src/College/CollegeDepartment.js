@@ -1,5 +1,5 @@
 import React from "react";
-import "../style.css";
+import "./style2.css";
 import AddDepartmentForm from "./AddDepartmentForm";
 import DepartmentComponent from "./DepartmentComponent";
 import Practice from "./practice";
@@ -56,23 +56,22 @@ function CollegeDepartment() {
 
   return (
     <div className="deptcomp">
-      <div>
-        <DepartmentComponent
-          myArray={empArray}
-          addNewDept={addNewDeptToArray}
-          editDepartment={editDepartment}
-        />
-      </div>
-      <button className="arraydata" onClick={showInputBox}>
+      <DepartmentComponent
+        myArray={empArray}
+        addNewDept={addNewDeptToArray}
+        editDepartment={editDepartment}
+      />
+
+      <button className="deptvaluebtn" onClick={showInputBox}>
         Add
       </button>
       {show ? (
         <AddDepartmentForm addNewDept={addNewDeptToArray} dept="" />
       ) : null}
-      <div>
-        {/* <Practice myarr={empArray} /> */}
-        {/* <button onClick={deleteDepartment}>Delete</button> */}
-      </div>
+      {/* <div>
+        <Practice myarr={empArray} /> 
+        <button onClick={deleteDepartment}>Delete</button>
+      </div> */}
     </div>
   );
 }

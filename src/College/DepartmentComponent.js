@@ -1,10 +1,11 @@
 import React from "react";
-import "../style.css";
+import "./style2.css";
 import EditDepartmentForm from "./EditDepartmentForm";
 
 function DepartmentComponent(props) {
   const [departmentClicked, setDeptClicked] = React.useState();
   const [editedDept, setEditedDept] = React.useState();
+
   const [indexOfEditedDept, setIndex] = React.useState(0);
   console.log("dept Id ", props.myArray);
 
@@ -13,6 +14,11 @@ function DepartmentComponent(props) {
     console.log("dept to edit", dep.dept);
     setEditedDept(dep);
     setIndex(index);
+  };
+
+  const abc = () => {
+    setEditedDept(false);
+    props.editDepartment();
   };
 
   return (
@@ -60,7 +66,7 @@ function DepartmentComponent(props) {
           <EditDepartmentForm
             editedDept={editedDept}
             indexOfEditedDept={indexOfEditedDept}
-            editDepartment={props.editDepartment}
+            editDepartment={abc}
           />
         )}
       </div>

@@ -5,16 +5,16 @@ import { Provider } from "react-redux";
 import RouterApp from "./RouterApp";
 import store from "./Redux/Store/Store";
 import CollegeDepartment from "./College/CollegeDepartment";
-// import App from "./App";
+import App from "./App";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
-    {/* <App /> */}
+    <App />
     {/* <Provider store={store}>
       <RouterApp />
     </Provider> */}
-    <CollegeDepartment/>
+    {/* <CollegeDepartment/> */}
   </React.StrictMode>
 );
 

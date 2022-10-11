@@ -1,0 +1,37 @@
+.deptcomp{
+    width: 20%;
+    height: 100%;
+    background-color: aquamarine;
+    margin-top: 5%;
+    margin-left: 2%;
+}
+.tdata{
+    position: absolute;
+    width: 40%;
+    background-color: rgb(244, 228, 136);
+    margin-left: 30%;
+}
+table{
+    width: 100%;
+}
+body{
+    background-color: rgb(208, 251, 241);
+}
+.editdata{
+    position: absolute;
+    width: 40%;
+    margin-left: 30%;
+    margin-top: 8%;
+    background-color: rgb(112, 112, 224);
+}
+.arraydata{
+    position: absolute;
+    width: 40%;
+    margin-left: 30%;
+    margin-top: 15%;
+    background-color: rgb(112, 112, 224);
+}
+.deptvaluebtn{
+    width: 157px;
+    margin: 2px;
+}
