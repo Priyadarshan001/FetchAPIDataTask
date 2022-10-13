@@ -13,10 +13,13 @@
   height: 550px;
   width: 30%;
 }
-.div3 {
+.rightdiv{
   background-color: rgb(170, 252, 173);
   width: 70%;
   height: 550px;
+}
+.div3 {
+ 
   display: flex;
   justify-content: center;
   align-items: center;
@@ -24,7 +27,7 @@
 .inputfield {
   display: flex;
   flex-direction: column;
-  width: 30%;
+  width: 40%;
 }
 .btn {
   background-color: #603cee;
@@ -35,7 +38,6 @@
   text-decoration: none;
   display: inline-block;
   font-size: 16px;
-  width: 100%;
   cursor: pointer;
 }
 .btn2 {
@@ -53,14 +55,22 @@
 input[type="text"] {
   width: 100%;
   padding: 12px 20px;
-  margin: 8px 0;
+  margin: 5px 0;
   display: inline-block;
   border: 1px solid #ccc;
   border-radius: 4px;
   box-sizing: border-box;
+  resize: vertical;
 }
+
 .data {
   border: 1px solid black;
   padding: 5px;
   margin-bottom: 5px;
+}
+.inputBox{
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  float: right;
 }
