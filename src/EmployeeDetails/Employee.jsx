@@ -5,28 +5,20 @@ import AddEmployeeDetails from "./AddEmployeeDetails";
 
 function EmployeeData() {
   const [showInput, setShowInput] = useState(false);
-  const [formData, setFormData] = useState({ name: "", dept: 30 });
+  const [formData, setFormData] = useState({});
   const [empData, setEmpData] = useState([]);
   const [showAddButton, setshowAddButton] = useState(false);
   const [showAddDetails, setShowAddDetails] = useState(false);
+  const [dept, setDept] = useState({});
+  const [showTable, setShowTable] = useState(false);
 
   const showForm = () => {
     setShowInput(true);
     setshowAddButton(false);
     setShowAddDetails(false);
   };
-  {
-    console.log("EMP DATA", formData);
-  }
-  const addName = (e) => {
-    setFormData((prev) => {
-      return { ...prev, name: e.target.value };
-    });
-  };
-  const addDepartment = (event) => {
-    setFormData((prev) => {
-      return { ...prev, dept: event.target.value };
-    });
+  const onChangeEmployeeData = (value, key) => {
+    setFormData((previousData) => ({ ...previousData, [key]: value }));
   };
 
   const saveData = () => {
@@ -41,7 +33,8 @@ function EmployeeData() {
     }
   };
 
-  const showDetails = () => {
+  const showDetails = (index) => {
+    setDept({ data: empData[index], index });
     setshowAddButton(true);
     setShowInput(false);
     setShowAddDetails(false);
@@ -52,19 +45,28 @@ function EmployeeData() {
     setshowAddButton(true);
     setShowAddDetails(!showAddDetails);
   };
+
+  const showTableData = () => {
+    setShowTable(!showTable);
+  };
+
   return (
     <div className="maindiv">
       <h4 className="h4">EMPLOYEE DATA</h4>
       <div style={{ display: "flex" }}>
         <div className="div2">
           <div>
-            {empData.map((item, index) => {
+            {empData?.map((item, index) => {
               let selectedObj = departments.find((i) => {
                 return i.DepartmentId == item.dept;
               });
 
               return (
-                <div key={index} className="data" onClick={showDetails}>
+                <div
+                  key={index}
+                  className="data"
+                  onClick={() => showDetails(index)}
+                >
                   <div>Name:{item.name}</div>
                   <div>Department:{selectedObj?.DepartmentName}</div>
                 </div>
@@ -74,6 +76,13 @@ function EmployeeData() {
 
           <button className="btn" onClick={showForm} style={{ width: "100%" }}>
             Add an Employee
+          </button>
+          <button
+            className="btn"
+            onClick={showTableData}
+            style={{ width: "100%" }}
+          >
+            Show data
           </button>
         </div>
         <div className="rightdiv">
@@ -88,11 +97,7 @@ function EmployeeData() {
           )}
           {showAddDetails && (
             <div>
-              <AddEmployeeDetails empData={empData} />
-              {/* <button className="btn2" onClick={() => setShowAddDetails(false)}>
-                Cancel
-              </button> */}
-              {/* <button className="btn2">Save</button> */}
+              <AddEmployeeDetails dept={dept} setEmpData={setEmpData} />
             </div>
           )}
 
@@ -104,10 +109,13 @@ function EmployeeData() {
                   type="text"
                   placeholder="Enter the name here"
                   value={formData.name}
-                  onChange={addName}
+                  onChange={(e) => onChangeEmployeeData(e.target.value, "name")}
                 />
                 Department
-                <select value={formData.dept} onChange={addDepartment}>
+                <select
+                  value={formData.dept}
+                  onChange={(e) => onChangeEmployeeData(e.target.value, "dept")}
+                >
                   {departments.map((val, index) => (
                     <option key={index} value={val.DepartmentId}>
                       {val.DepartmentName}
@@ -122,6 +130,36 @@ function EmployeeData() {
                     Save
                   </button>
                 </div>
+              </div>
+            )}
+          </div>
+          <div>
+            {showTable && (
+              <div>
+                <table>
+                  <tbody>
+                    <tr>
+                      <th>ID</th>
+                      <th>Name</th>
+                      <th>Department</th>
+                      <th>Email</th>
+                      <th>Contact</th>
+                      <th>Address</th>
+                    </tr>
+                    {empData.map((item) => {
+                      return (
+                        <tr>
+                          <td>{item.id}</td>
+                          <td>{item.name}</td>
+                          <td>{item.dept}</td>
+                          <td>{item.email}</td>
+                          <td>{item.contact}</td>
+                          <td>{item.address}</td>
+                        </tr>
+                      );
+                    })}
+                  </tbody>
+                </table>
               </div>
             )}
           </div>

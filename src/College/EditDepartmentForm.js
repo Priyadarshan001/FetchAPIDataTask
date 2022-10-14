@@ -2,8 +2,6 @@ import React, { useState } from "react";
 import "./style2.css";
 
 function EditDepartmentForm(props) {
-  console.log("props", props);
-
   const [newDept, setNewDept] = useState(props.editedDept);
 
   React.useEffect(() => {

@@ -39,6 +39,7 @@
   display: inline-block;
   font-size: 16px;
   cursor: pointer;
+  padding-bottom: 2px;
 }
 .btn2 {
   background-color: #4caf50;
@@ -73,4 +74,17 @@ input[type="text"] {
   align-items: center;
   gap: 10px;
   float: right;
+}
+table {
+  font-family: arial, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+}
+td, th {
+  border: 1px solid #dddddd;
+  text-align: left;
+  padding: 8px;
+}
+tr:nth-child(even) {
+  background-color: #dddddd;
 }
